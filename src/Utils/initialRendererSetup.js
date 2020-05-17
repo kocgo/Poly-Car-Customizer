@@ -9,6 +9,7 @@ export function initialRendererSetup() {
     this.canvasRef.current.clientWidth,
     this.canvasRef.current.clientHeight
   );
+  this.renderer.gammaOutput = true;
   this.canvasRef.current.appendChild(this.renderer.domElement);
 
   // Camera
@@ -30,14 +31,18 @@ export function initialRendererSetup() {
   this.camera.position.z = 1500;
 
   // Controls
-  this.controls = new OrbitControls(this.camera);
+  this.controls = new OrbitControls(this.camera, this.renderer.domElement);
   this.controls.autoRotate = true;
 
   // AxesHelper
-  this.axesHelper = new THREE.AxesHelper(500);
-  this.scene.add(this.axesHelper);
+  let axesHelper = new THREE.AxesHelper(500);
+  this.scene.add(axesHelper);
 
-  // Ligth (Pale Orange, 4 intensity)
-  this.hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 0.2);
-  this.scene.add(this.hemiLight);
+  // Ligths
+  let ambientLight = new THREE.AmbientLight(0x404040); // soft white light
+  ambientLight.intensity = 10;
+  this.scene.add(ambientLight);
+
+  // let hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 0.2);
+  // this.scene.add(hemiLight);
 }
