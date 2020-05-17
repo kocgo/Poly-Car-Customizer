@@ -7,7 +7,7 @@ import Canvas from "./Components/Canvas/Canvas";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ambientLight: 0 };
+    this.state = { ambientLight: 5 };
   }
   render() {
     return (

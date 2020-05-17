@@ -12,7 +12,12 @@ export default class LeftBar extends Component {
       <div styleName={"LeftBar"}>
         <div>
           <h6>Ambient Light</h6>
-          <Slider onChange={(e) => update({ ambientLight: e.target.value })} />
+          <Slider
+            min={0}
+            max={20}
+            val={ambientLight}
+            onChange={(e) => update({ ambientLight: e.target.value })}
+          />
           {ambientLight}
         </div>
       </div>

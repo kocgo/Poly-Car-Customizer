@@ -34,7 +34,8 @@ class Canvas extends React.Component {
   }
 
   componentDidUpdate() {
-    this.ambientLight = this.context.state.ambientLight;
+    console.log("updating");
+    this.ambientLight.intensity = this.context.state.ambientLight;
   }
 
   animate() {
