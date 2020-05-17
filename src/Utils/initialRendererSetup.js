@@ -22,7 +22,7 @@ export function initialRendererSetup() {
 
   // Scene
   this.scene = new THREE.Scene();
-  this.scene.background = new THREE.Color(0xf1f1f1);
+  // this.scene.background = new THREE.Color(0xffffff);
 
   // Camera
   this.camera.rotation.y = (45 / 180) * Math.PI;
@@ -39,9 +39,9 @@ export function initialRendererSetup() {
   this.scene.add(axesHelper);
 
   // Ligths
-  let ambientLight = new THREE.AmbientLight(0x404040); // soft white light
-  ambientLight.intensity = 10;
-  this.scene.add(ambientLight);
+  this.ambientLight = new THREE.AmbientLight(0x404040); // soft white light
+  this.ambientLight.intensity = 10;
+  this.scene.add(this.ambientLight);
 
   // let hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 0.2);
   // this.scene.add(hemiLight);

@@ -1,4 +1,5 @@
 import React from "react";
+import { MainContext, MainContextProvider } from "../../Context";
 import styles from "./Canvas.css";
 import { initialRendererSetup } from "../../Utils/initialRendererSetup";
 import { onWindowResize, togglePause } from "../../Utils/utils";
@@ -32,6 +33,10 @@ class Canvas extends React.Component {
     this.loadModels();
   }
 
+  componentDidUpdate() {
+    // this.ambientLight =
+  }
+
   animate() {
     if (this.state.isPaused) return;
     this.renderer?.render(this.scene, this.camera);
@@ -44,5 +49,7 @@ class Canvas extends React.Component {
     return <div key={"Canvas"} styleName={"Canvas"} ref={this.canvasRef}></div>;
   }
 }
+
+Canvas.contextType = MainContext;
 
 export default Canvas;
