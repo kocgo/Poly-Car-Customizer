@@ -1,5 +1,5 @@
 import React from "react";
-import { MainContext, MainContextProvider } from "../../Context";
+import { MainContext } from "../../Context";
 import styles from "./Canvas.css";
 import { initialRendererSetup } from "../../Utils/initialRendererSetup";
 import { onWindowResize, togglePause } from "../../Utils/utils";
@@ -34,7 +34,7 @@ class Canvas extends React.Component {
   }
 
   componentDidUpdate() {
-    // this.ambientLight =
+    this.ambientLight = this.context.state.ambientLight;
   }
 
   animate() {

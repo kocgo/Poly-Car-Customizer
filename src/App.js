@@ -7,12 +7,12 @@ import Canvas from "./Components/Canvas/Canvas";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { counter: 1 };
+    this.state = { ambientLight: 0 };
   }
   render() {
     return (
       <MainContextProvider
-        value={{ state: this.state, setState: this.setState }}
+        value={{ state: this.state, update: this.setState.bind(this) }}
       >
         <div style={{ display: "flex" }}>
           <LeftBar />
