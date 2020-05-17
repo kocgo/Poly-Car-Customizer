@@ -5,7 +5,7 @@ import styles from "./LeftBar.css";
 
 export default class LeftBar extends Component {
   render() {
-    let { ambientLight } = this.context.state;
+    let { ambientLight, light1 } = this.context.state;
     let { update } = this.context;
 
     return (
@@ -18,7 +18,34 @@ export default class LeftBar extends Component {
             val={ambientLight}
             onChange={(e) => update({ ambientLight: e.target.value })}
           />
-          {ambientLight}
+        </div>
+
+        <div>
+          <h6>Light1 Positions</h6>
+          <Slider
+            min={0}
+            max={20}
+            val={light1.x}
+            onChange={(e) =>
+              update({ light1: { ...light1, x: e.target.value } })
+            }
+          />
+          <Slider
+            min={0}
+            max={20}
+            val={light1.y}
+            onChange={(e) =>
+              update({ light1: { ...light1, y: e.target.value } })
+            }
+          />
+          <Slider
+            min={0}
+            max={20}
+            val={light1.z}
+            onChange={(e) =>
+              update({ light1: { ...light1, z: e.target.value } })
+            }
+          />
         </div>
       </div>
     );
