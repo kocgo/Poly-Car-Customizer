@@ -6,14 +6,11 @@ export function onWindowResize() {
   //   controls.handleResize;
 }
 
-export function togglePause(e) {
-  if (e.code === "Enter") {
-    console.log(this.state);
-    this.setState({ isPaused: !this.state.isPaused });
-    console.log("Paused: ", this.state.isPaused);
-
-    if (!this.state.isPaused) {
-      this.animate();
-    }
+export function startStop() {
+  if (!this.frameId) {
+    this.frameId = requestAnimationFrame(this.animate);
+  } else {
+    cancelAnimationFrame(this.frameId);
+    this.frameId = null;
   }
 }

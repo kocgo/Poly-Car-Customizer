@@ -2,7 +2,7 @@ import React from "react";
 import { MainContext } from "../../Context";
 import styles from "./Canvas.css";
 import { initialRendererSetup } from "../../Utils/initialRendererSetup";
-import { onWindowResize, togglePause } from "../../Utils/utils";
+import { onWindowResize, startStop } from "../../Utils/utils";
 import { loadModels } from "../../Utils/loadModels";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -22,13 +22,13 @@ class Canvas extends React.Component {
     this.onWindowResize = onWindowResize.bind(this);
     this.initialRendererSetup = initialRendererSetup.bind(this);
     this.animate = this.animate.bind(this);
-    this.togglePause = togglePause.bind(this);
     this.loadModels = loadModels.bind(this);
+    this.startStop = startStop.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener("resize", this.onWindowResize);
-    window.addEventListener("keypress", this.togglePause);
+    window.addEventListener("keypress", this.startStop);
     this.initialRendererSetup();
     this.loadModels();
   }
@@ -41,9 +41,8 @@ class Canvas extends React.Component {
   }
 
   animate() {
-    if (this.state.isPaused) return;
     this.renderer?.render(this.scene, this.camera);
-    requestAnimationFrame(this.animate);
+    this.frameId = window.requestAnimationFrame(this.animate);
   }
 
   render() {
