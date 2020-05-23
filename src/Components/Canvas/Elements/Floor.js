@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
-const floorMouseOver = (floor) => {
-  floor.intersects[0].object.material.color.set(0x444444);
+const floorMouseOver = (event) => {
+  event.currentTarget.material.color.set(0x444444);
 };
 
 const floorMouseOut = (event) => {

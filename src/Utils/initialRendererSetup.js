@@ -66,7 +66,6 @@ export function initialRendererSetup() {
 
   this.scene.on("click", (ev) => {
     console.log(ev);
-    console.log(ev.intersects[0].object.material.color.set(0x444444));
   });
 
   // Floor
