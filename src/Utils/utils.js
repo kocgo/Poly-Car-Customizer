@@ -9,8 +9,10 @@ export function onWindowResize() {
 export function startStop() {
   if (!this.frameId) {
     this.frameId = requestAnimationFrame(this.animate);
+    console.log("Started");
   } else {
     cancelAnimationFrame(this.frameId);
     this.frameId = null;
+    console.log("Stopped");
   }
 }

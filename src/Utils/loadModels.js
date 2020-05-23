@@ -9,7 +9,9 @@ function errorHandler(err) {
 }
 
 function addModelToScene(gltf) {
-  this.scene.add(gltf.scene);
+  let root = gltf.scene;
+  root.scale.set(1, 1, 1);
+  this.scene.add(root);
 }
 
 export function loadModels() {

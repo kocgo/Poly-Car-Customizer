@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import OC from "three-orbit-controls";
+import { Interaction } from "three.interaction";
 const OrbitControls = OC(THREE);
 
 export function initialRendererSetup() {
@@ -10,6 +11,7 @@ export function initialRendererSetup() {
     this.canvasRef.current.clientHeight
   );
   this.renderer.gammaOutput = true;
+  this.renderer.gammaFactor = 2.2;
   this.canvasRef.current.appendChild(this.renderer.domElement);
 
   // Camera
@@ -22,7 +24,7 @@ export function initialRendererSetup() {
 
   // Scene
   this.scene = new THREE.Scene();
-  this.scene.background = new THREE.Color(0xffffff);
+  this.scene.background = new THREE.Color("black");
 
   // Camera
   this.camera.rotation.y = (45 / 180) * Math.PI;
@@ -46,4 +48,30 @@ export function initialRendererSetup() {
   this.light1 = new THREE.DirectionalLight(0xffffff);
   this.light1.position.set(1, 1, 1);
   this.scene.add(this.light1);
+
+  this.light1 = new THREE.DirectionalLight(0xffffff);
+  this.light1.position.set(1, 1, 1);
+  this.scene.add(this.light1);
+
+  // Grid
+  let size = 400;
+  let divisions = 40;
+
+  this.gridHelper = new THREE.GridHelper(size, divisions, 0x0000ff, 0x808080);
+  this.scene.add(this.gridHelper);
+
+  // RayCaster
+  // this.raycaster = new THREE.Raycaster();
+  // this.mouse = new THREE.Vector2();
+
+  // this.canvasRef.current.addEventListener("mousedown", () =>
+  //   console.log("mouse")
+  // );
+
+  // Interaction
+  const interaction = new Interaction(this.renderer, this.scene, this.camera);
+
+  this.scene.on("click", (ev) => {
+    console.log(ev);
+  });
 }

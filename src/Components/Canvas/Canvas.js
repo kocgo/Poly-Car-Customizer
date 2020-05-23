@@ -30,7 +30,8 @@ class Canvas extends React.Component {
     window.addEventListener("resize", this.onWindowResize);
     window.addEventListener("keypress", this.startStop);
     this.initialRendererSetup();
-    this.loadModels();
+    // this.loadModels();
+    this.animate();
   }
 
   componentDidUpdate() {
@@ -41,13 +42,12 @@ class Canvas extends React.Component {
   }
 
   animate() {
+    // console.log("animating");
     this.renderer?.render(this.scene, this.camera);
     this.frameId = window.requestAnimationFrame(this.animate);
   }
 
   render() {
-    this.animate();
-
     return <div key={"Canvas"} styleName={"Canvas"} ref={this.canvasRef}></div>;
   }
 }
