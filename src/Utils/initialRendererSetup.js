@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { createFloor } from "../Components/Canvas/Elements/Floor";
 import OC from "three-orbit-controls";
 import { Interaction } from "three.interaction";
 const OrbitControls = OC(THREE);
@@ -60,18 +61,14 @@ export function initialRendererSetup() {
   this.gridHelper = new THREE.GridHelper(size, divisions, 0x0000ff, 0x808080);
   this.scene.add(this.gridHelper);
 
-  // RayCaster
-  // this.raycaster = new THREE.Raycaster();
-  // this.mouse = new THREE.Vector2();
-
-  // this.canvasRef.current.addEventListener("mousedown", () =>
-  //   console.log("mouse")
-  // );
-
   // Interaction
   const interaction = new Interaction(this.renderer, this.scene, this.camera);
 
   this.scene.on("click", (ev) => {
     console.log(ev);
+    console.log(ev.intersects[0].object.material.color.set(0x444444));
   });
+
+  // Floor
+  let floor1 = createFloor(this.scene);
 }
